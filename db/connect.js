@@ -1,10 +1,10 @@
 const mySql = require("mysql");
 
-const connection = mySql.createConnection({
+const connection = mySql.createPool({
   host: "localhost",
-  user: "root@localhost",
+  user: "root",
   password: process.env.MYSQLPASSWORD,
-  database: "QUIZ_DATA",
+  database: "quiz_data",
 });
 
 module.exports = connection;

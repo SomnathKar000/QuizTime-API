@@ -1,7 +1,42 @@
 const CustomError = require("../error/error");
+const pool = require("../db/connect");
+const moment = require("moment-timezone");
 
 const createQuiz = (req, res) => {
-  res.status(200).json({ success: true, msg: "create quiz" });
+  // let { question, options, answare, startDate, endDate, status } =
+  //   req.body.quizData;
+
+  // answare = parseInt(answare);
+  // options = JSON.stringify(options);
+  // startDate = startDate.split("T").join(" ");
+  // endDate = endDate.split("T").join(" ");
+  // startDate = moment
+  //   .tz(startDate, "YYYY-MM-DDTHH:mm:ss", "Asia/Kolkata")
+  //   .toISOString();
+  // endDate = moment
+  //   .tz(endDate, "YYYY-MM-DDTHH:mm:ss", "Asia/Kolkata")
+  //   .toISOString();
+  // pool.query(
+  //   `INSERT INTO quiz_table (question, options, answare, startDate, endDate, status) VALUES ('${question}', '${options}', ${answare}, '${startDate}', '${endDate}', '${status}')`,
+  //   (err, result) => {
+  //     if (err) {
+  //       console.log(err);
+  //       throw new CustomError("Error occured", 404);
+  //     } else {
+  //       console.log(result);
+  //       res.status(200).json({ success: true, msg: "create quiz" });
+  //     }
+  //   }
+  // );
+  pool.query("SELECT * FROM quiz_table", (err, results) => {
+    if (err) {
+      console.log(err);
+      throw new CustomError("Error occured", 404);
+    } else {
+      console.log(results);
+      return res.status(200).json({ success: true, msg: "create quiz" });
+    }
+  });
 };
 
 const getAllActiveQuizzes = (req, res) => {

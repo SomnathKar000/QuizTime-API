@@ -1,6 +1,5 @@
 const CustomError = require("../error/error");
 const pool = require("../db/connect");
-const moment = require("moment-timezone");
 
 const createQuiz = (req, res) => {
   // let { question, options, answare, startDate, endDate, status } =
